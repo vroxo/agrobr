@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from src.application.ports.config_port import ConfigPort
 
@@ -13,7 +13,12 @@ class Settings(BaseSettings, ConfigPort):
     value_rate_increment: float = 0.005
     value_rate_step: float = 10_000.0
 
-    model_config = {"env_prefix": "INSURANCE_"}
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        env_prefix="INSURANCE_",
+        extra="ignore",
+    )
 
     def get_age_rate_increment(self) -> float:
         return self.age_rate_increment

@@ -1,5 +1,4 @@
 from collections.abc import AsyncGenerator
-from functools import lru_cache
 from typing import Optional
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -14,7 +13,6 @@ from src.infrastructure.gis.gis_adapter import SimpleGisAdapter
 _db_session: Optional[DatabaseSession] = None
 
 
-@lru_cache
 def get_settings() -> Settings:
     return Settings()
 

@@ -230,6 +230,14 @@ curl -X POST http://localhost:8000/api/v1/quote \
   }'
 ```
 
+**GIS troubleshooting:** the app reads **`INSURANCE_*` from a `.env` file in the project root** (not only from the shell environment). For GIS to change the result you need **all** of:
+
+1. `INSURANCE_GIS_ENABLED=true` in `.env`
+2. **`registration_location`** in the JSON body (GIS is skipped if this field is missing, even when enabled)
+3. **Restart Uvicorn** after editing `.env` (so the process reloads settings)
+
+If GIS is on and you send an address but `applied_rate` / `calculated_premium` still match the run without GIS, compare `applied_rate` to six decimal places — only a rare address hashes to an adjustment extremely close to zero.
+
 ## Configuration
 
 All parameters are configurable via environment variables (prefix `INSURANCE_`):
