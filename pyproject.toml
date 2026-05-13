@@ -1,0 +1,14 @@
+[project]
+name = "car-insurance-premium-simulator"
+version = "1.0.0"
+description = "Backend service that calculates car insurance premiums"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*"]
